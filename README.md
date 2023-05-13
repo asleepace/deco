@@ -1,0 +1,2 @@
+# deco
+Useful typescript decorators
