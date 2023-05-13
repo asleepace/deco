@@ -14,22 +14,10 @@ export function pure(target: any, propertyKey: string, descriptor: PropertyDescr
   // if (typeof targetMethod !== 'function') {
   //   throw new Error(`@pure decorator can only be used on methods: ${propertyKey} is not a method.`)
   // }
+  const targetMethod = descriptor.value
 
   // overrides the methods "this" with a proxy that will throw if a mutation is made.
   return Object.defineProperty(target, propertyKey, {
-    value: target[propertyKey].bind(new Proxy({}, {
-      get(target, propertyKey, receiver) {
-        console.warn('get', { target, propertyKey, receiver })
-        throw new Error(`@pure side effect detected (get) property: ${String(propertyKey)}`)
-      },
-      set(target, propertyKey, value, receiver) {
-        console.warn('get', { target, propertyKey, receiver })
-        throw new Error(`@pure side effect detected (set) value ${value} on property: ${String(propertyKey)}`)
-      },
-      apply(target, thisArg, argumentsList) {
-        console.warn('get', { target, thisArg, argumentsList })
-        throw new Error(`@pure side effect detected (apply) ${target} on: ${thisArg}`)
-      },
-    }))
+    value: throwOnSidEffects(targetMethod),
   })
 };

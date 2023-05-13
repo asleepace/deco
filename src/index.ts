@@ -1,7 +1,8 @@
 import { pure } from './@pure/pure'
 import { mute } from './@mute/mute'
 import { Publisher } from './Publisher'
-export { pure, mute }
+import { SideEffectError } from './@pure/throwOnSideEffects'
+export { pure, mute, SideEffectError }
 
 
 const publisher = new Publisher({ count: 0 })
