@@ -1,4 +1,5 @@
-import { throwOnSidEffects } from "./throwOnSideEffects"
+import { throwOnSidEffects, SideEffectError } from "./throwOnSideEffects"
+export { throwOnSidEffects, SideEffectError }
 /**
  * This decorator will throw an error if side effects are detected on a method.
  */

@@ -57,7 +57,7 @@ describe("@pure decorator tests...", () => {
 
   it("does not throw using outside scope value", () => {
     const test = new SemiPureTest(8)
-    expect(test.timesOutsideScope(9)).toBe(true)
+    expect(test.timesOutsideScope(9)).toBe(1107)
   })
 
 })
